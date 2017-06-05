@@ -52,7 +52,7 @@
         
         function onDeviceReady() {
             var size = 0;
-            window.requestFileSystem(localFileSystem.PERSISTENT, size, onFileSysSuccess, onError);
+            window.requestFileSystem(localFileSystem.TEMPORARY, size, onFileSysSuccess, onError);
         }
         
         function onFileSysSuccess(fileSystem) {
