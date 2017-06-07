@@ -52,17 +52,19 @@
         
         function onDeviceReady() {
             var size = 0;
-            window.requestFileSystem(localFileSystem.TEMPORARY, size, onFileSysSuccess, onError);
+            window.requestFileSystem(localFileSystem.PERSISTENT, size, onFileSysSuccess, onError);
         }
         
         function onFileSysSuccess(fileSystem) {
+            alert( "Got the file system: " + fileSystem.name + "<br/>" +
+            "root entry name is " + fileSystem.root.name + "<p/>");
             var root = fileSystem.root;
             var reader = root.createReader();
             
             reader.readEntries(function(entries) {
                 for (var i = 0, entry; entry = entries[i]; i++){
                     if (entry.isFile && (/\.(gif|jpg|jpeg|png)$/i).test(entry.name)) {
-                        root.getFile(entry.name, [create: false], onGetFile, onError);
+                        root.getFile(entry.name, {create: false}, onGetFile, onError);
                         break;
                     }
                 }
@@ -84,10 +86,12 @@
 
                 fReader.readAsDataURL(File);
             }, onError);
+        }
         
         function onError(error) {
-            alert('Error code: ' + error.code);
+            alert("Error code: " + error.code);
         }
+            
     </script>
 </body>
 
