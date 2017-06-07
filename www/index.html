@@ -58,7 +58,7 @@
         function onFileSysSuccess(fileSystem) {
             alert( "Got the file system: " + fileSystem.name + "<br/>" +
             "root entry name is " + fileSystem.root.name + "<p/>");
-            var root = fileSystem.root;
+/*            var root = fileSystem.root;
             var reader = root.createReader();
             
             reader.readEntries(function(entries) {
@@ -68,7 +68,7 @@
                         break;
                     }
                 }
-            }, onError);
+            }, onError);*/
         }
         
         function onGetFile(fileEntry) {
