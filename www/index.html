@@ -58,7 +58,7 @@
                 fs.root.getFile("newPersistentFile.txt", { create: true, exclusive: false }, function (fileEntry) {
                     alert("fileEntry is file?" + fileEntry.isFile.toString());
                     alert(fileEntry.name);
-                    alert(fs.root.$location.path);
+                    alert(fs.name);
                     // fileEntry.name == 'someFile.txt'
                     // fileEntry.fullPath == '/someFile.txt'
                     writeFile(fileEntry, null);
