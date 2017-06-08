@@ -58,10 +58,10 @@
                 fs.root.getFile("newPersistentFile.txt", { create: true, exclusive: false }, function (fileEntry) {
                     alert("fileEntry is file?" + fileEntry.isFile.toString());
                     alert(fileEntry.name);
-                    alert(fs.name);
                     // fileEntry.name == 'someFile.txt'
                     // fileEntry.fullPath == '/someFile.txt'
                     writeFile(fileEntry, null);
+                    readFile(fileEntry, null);
                 }, onError);
             }, onError);
             
@@ -87,6 +87,21 @@
                     fileWriter.write(dataObj);
                 });
             }
+        }
+        
+        function readFile(fileEntry) {
+
+            fileEntry.file(function (file) {
+                var reader = new FileReader();
+
+                reader.onloadend = function() {
+                    alert("Successful file read: " + this.result);
+                    displayFileData(fileEntry.fullPath + ": " + this.result);
+                };
+
+                reader.readAsText(file);
+
+            }, onError);
         }
         
         function onError(error) {
